@@ -4,12 +4,16 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import bean.PromptBean;
 
 @SuppressWarnings("serial")
 public class PromptPanel extends JPanel {
@@ -50,6 +54,14 @@ public class PromptPanel extends JPanel {
 		JPanel jp2 = new JPanel();
 		jp2.add(button);
 		this.add(jp2, BorderLayout.SOUTH);
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				f.setContentPane(new ClientPanel(f, new PromptBean(portField.getText(), nicknameField.getText())));
+				f.repaint();
+				f.revalidate();
+			}
+		});
 		
 		//N Label "Chat"
 		JPanel jpLogo = new JPanel();
